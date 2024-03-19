@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:slash_app/screens/home_screen.dart';
+import 'package:slash_app/services/get_all_product_service.dart';
 
 void main() {
   runApp(const MyApp());
+  AllProductsService().getAllProducts();
+
 }
 
 class MyApp extends StatelessWidget {
