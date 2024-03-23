@@ -18,11 +18,11 @@ class HomeScreen extends StatelessWidget {
               color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
         ),
       ),
-      body: FutureBuilder<List<ProductModel>>(
+      body: FutureBuilder<List<Product>>(
         future: AllProductsService().getAllProducts(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            List<ProductModel> products = snapshot.data!;
+            List<Product> products = snapshot.data!;
 
             return GridView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),

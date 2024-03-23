@@ -8,7 +8,7 @@ class CustomCard extends StatelessWidget {
     super.key,
     required this.product
   });
-  ProductModel product;
+  Product product;
 
 
   @override
@@ -21,17 +21,16 @@ class CustomCard extends StatelessWidget {
           Container(
             height: 120,
             width: 130,
-            decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(30)),
+            decoration:  BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(30)),
                 image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: NetworkImage(
-                        "https://lh3.googleusercontent.com/hwau7OVWx96XaME5KpRuJ0I_MscrerK6SbRH1UwYHYaxIDQQtn7RZK02LDSfBzCreidFgDsJeXyqDct6EZiH6vsV=w640-h400-e365-rj-sc0x00ffffff"))),
+                    image: NetworkImage(product.productVariations![0].productVarientImages![0].imagePath,scale: 10))),
           ),
           const SizedBox(
             height: 5,
           ),
-          const Padding(
+           Padding(
             padding: EdgeInsets.symmetric(horizontal: 30),
             child: Column(
               children: [
@@ -39,7 +38,7 @@ class CustomCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomText(
-                      text: "Interns - Wall  \npainting",
+                      text: product.name.substring(0,6),
                     ),
                     CustomText(text: "/."),
                   ],
@@ -50,7 +49,7 @@ class CustomCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomText(text: "EGP1010"),
+                    CustomText(text: "EGP${product.productVariations?[0].price}"),
                     Icon(
                       FontAwesomeIcons.heart,
                       size: 15,

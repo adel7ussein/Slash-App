@@ -1,11 +1,11 @@
-class ProductModel {
+class Product {
   int? id;
-  String? name;
+  late String name;
   String? type;
   String? description;
   int? subCategoryId;
   int? brandId;
-  Null? bostaSizeId;
+  int? bostaSizeId;
   String? createdAt;
   String? updatedAt;
   Null? deletedAt;
@@ -17,9 +17,9 @@ class ProductModel {
   Null? sizeChart;
   int? notApprovedVariants;
 
-  ProductModel(
+  Product(
       {this.id,
-        this.name,
+        required this.name,
         this.type,
         this.description,
         this.subCategoryId,
@@ -36,9 +36,9 @@ class ProductModel {
         this.sizeChart,
         this.notApprovedVariants});
 
-  ProductModel.fromJson(Map<String, dynamic> json) {
+  Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    name = json['name'];
+    name = json['name'] ?? 'nothing';
     type = json['type'];
     description = json['description'];
     subCategoryId = json['sub_category_id'];
@@ -100,12 +100,12 @@ class Brands {
   String? brandName;
   String? brandFacebookPageLink;
   String? brandInstagramPageLink;
-  Null? brandWebsiteLink;
+  String? brandWebsiteLink;
   String? brandMobileNumber;
   String? brandEmailAddress;
-  Null? taxIdNumber;
+  String? taxIdNumber;
   String? brandDescription;
-  String? brandLogoImagePath;
+  late String brandLogoImagePath;
   int? brandStatusId;
   Null? brandStoreAddressId;
   int? brandCategoryId;
@@ -130,7 +130,7 @@ class Brands {
         this.brandEmailAddress,
         this.taxIdNumber,
         this.brandDescription,
-        this.brandLogoImagePath,
+        required this.brandLogoImagePath,
         this.brandStatusId,
         this.brandStoreAddressId,
         this.brandCategoryId,
@@ -155,7 +155,7 @@ class Brands {
     brandEmailAddress = json['brand_email_address'];
     taxIdNumber = json['tax_id_number'];
     brandDescription = json['brand_description'];
-    brandLogoImagePath = json['brand_logo_image_path'];
+    brandLogoImagePath = json['brand_logo_image_path'] ?? "https://lh3.googleusercontent.com/hwau7OVWx96XaME5KpRuJ0I_MscrerK6SbRH1UwYHYaxIDQQtn7RZK02LDSfBzCreidFgDsJeXyqDct6EZiH6vsV=w640-h400-e365-rj-sc0x00ffffff";
     brandStatusId = json['brand_status_id'];
     brandStoreAddressId = json['brand_store_address_id'];
     brandCategoryId = json['brand_category_id'];
@@ -210,7 +210,7 @@ class ProductVariations {
   String? createdAt;
   String? updatedAt;
   int? productVariationStatusId;
-  Null? acceptedBy;
+  int? acceptedBy;
   ProductStatusLookups? productStatusLookups;
   List<ProductVarientImages>? productVarientImages;
 
@@ -303,21 +303,21 @@ class ProductStatusLookups {
 
 class ProductVarientImages {
   int? id;
-  String? imagePath;
+  late String imagePath;
   int? productVarientId;
   String? createdAt;
   String? updatedAt;
 
   ProductVarientImages(
       {this.id,
-        this.imagePath,
+        required this.imagePath,
         this.productVarientId,
         this.createdAt,
         this.updatedAt});
 
   ProductVarientImages.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    imagePath = json['image_path'];
+    imagePath = json['image_path'] ?? "https://lh3.googleusercontent.com/hwau7OVWx96XaME5KpRuJ0I_MscrerK6SbRH1UwYHYaxIDQQtn7RZK02LDSfBzCreidFgDsJeXyqDct6EZiH6vsV=w640-h400-e365-rj-sc0x00ffffff";
     productVarientId = json['product_varient_id'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
@@ -337,7 +337,7 @@ class ProductVarientImages {
 class SubCategories {
   int? id;
   String? name;
-  Null? deletedAt;
+  String? deletedAt;
   String? createdAt;
   String? updatedAt;
   int? categoryId;
