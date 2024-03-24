@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
           } else {
             return const Center(
                 child: CircularProgressIndicator(
-              color: Color(0xFF3D82AE),
+              color: Colors.white,
             ));
           }
         },
