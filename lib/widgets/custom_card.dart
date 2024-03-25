@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:slash_app/screens/details_screen.dart';
 import '../models/product_model.dart';
 import 'custom_text.dart';
 
@@ -11,7 +12,9 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).pushNamed(DetailsScreen.id,arguments: product);
+      },
       child: Column(
         children: [
           Expanded(
