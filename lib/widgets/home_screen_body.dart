@@ -22,7 +22,7 @@ class HomeBody extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
             itemCount: products.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, mainAxisSpacing: 50, crossAxisSpacing: 10),
+                crossAxisCount: 2, mainAxisSpacing: 30, crossAxisSpacing: 10),
             itemBuilder: (BuildContext context, int index) {
               return CustomCard(product: products[index]);
             },

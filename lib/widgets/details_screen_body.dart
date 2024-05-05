@@ -174,7 +174,7 @@ class DetailsBody extends StatelessWidget {
                   child: Text(
                     'Description',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 15,
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
                     ),
@@ -185,14 +185,14 @@ class DetailsBody extends StatelessWidget {
                 width: 210,
               ),
               Icon(
-                Icons.arrow_downward_sharp,
-                size: 25,
+                Icons.arrow_drop_up_sharp,
+                size: 30,
                 color: Colors.white,
               )
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 50,
         )
 
