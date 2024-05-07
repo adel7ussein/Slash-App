@@ -13,6 +13,7 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Product product = ModalRoute.of(context)!.settings.arguments as Product;
     String imagePath = 'assets/images/libra0112.webp';
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(

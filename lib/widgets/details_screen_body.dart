@@ -15,6 +15,8 @@ class DetailsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List listOfColors = [0, 1, 2];
+
     return BlocConsumer<DetailsCubit, DetailsState>(
       listener: (context, state) {
         // TODO: implement listener
@@ -135,31 +137,69 @@ class DetailsBody extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 3),
-                  width: 25,
-                  height: 22,
-                  decoration: BoxDecoration(
-                      border: Border.all(
+                InkWell(
+                  onTap: () {
+                    BlocProvider.of<DetailsCubit>(context)
+                        .changeSelectedBorder(currentIndex: listOfColors[0]);
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 3),
+                    width: 22,
+                    height: 22,
+                    decoration: BoxDecoration(
+                        border: BlocProvider.of<DetailsCubit>(context)
+                                    .selectedIndex ==
+                                listOfColors[0]
+                            ? Border.all(
+                                color: Colors.white,
+                                width: 2.5,
+                              )
+                            : null,
+                        color: Colors.grey,
+                        shape: BoxShape.circle),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    BlocProvider.of<DetailsCubit>(context)
+                        .changeSelectedBorder(currentIndex: listOfColors[1]);
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 3),
+                    width: 22,
+                    height: 22,
+                    decoration:  BoxDecoration(
+                        color: Colors.lightBlue, shape: BoxShape.circle,
+                      border: BlocProvider.of<DetailsCubit>(context)
+                          .selectedIndex ==
+                          listOfColors[1]
+                          ? Border.all(
                         color: Colors.white,
                         width: 2.5,
-                      ),
-                      color: Colors.grey,
-                      shape: BoxShape.circle),
+                      )
+                          : null,),
+                  ),
                 ),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 3),
-                  width: 20,
-                  height: 20,
-                  decoration: const BoxDecoration(
-                      color: Colors.lightBlue, shape: BoxShape.circle),
-                ),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 3),
-                  width: 18,
-                  height: 18,
-                  decoration: const BoxDecoration(
-                      color: Colors.lightGreenAccent, shape: BoxShape.circle),
+                InkWell(
+                  onTap: () {
+                    BlocProvider.of<DetailsCubit>(context)
+                        .changeSelectedBorder(currentIndex: listOfColors[2]);
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 3),
+                    width: 22,
+                    height: 22,
+                    decoration:  BoxDecoration(
+                        color: Colors.lightGreenAccent, shape: BoxShape.circle,
+                      border: BlocProvider.of<DetailsCubit>(context)
+                          .selectedIndex ==
+                          listOfColors[2]
+                          ? Border.all(
+                        color: Colors.white,
+                        width: 2.5,
+                      )
+                          : null,),
+                  ),
                 ),
               ],
             ),
@@ -172,7 +212,7 @@ class DetailsBody extends StatelessWidget {
                   BlocProvider.of<DetailsCubit>(context).description ? 60 : 120,
               margin: const EdgeInsets.symmetric(horizontal: 5),
               padding:
-                  const EdgeInsets.symmetric(horizontal: 14,vertical: 8.0),
+                  const EdgeInsets.symmetric(horizontal: 14, vertical: 8.0),
               decoration: BoxDecoration(
                   color: Colors.grey[800],
                   border: BlocProvider.of<DetailsCubit>(context).description
@@ -209,11 +249,13 @@ class DetailsBody extends StatelessWidget {
                       )
                     ],
                   ),
-                   Center(
-                      child: BlocProvider.of<DetailsCubit>(context).description ? null : const Text(
-                        "100% cotton Treated against piling & Shrinkage for men & women Comfortable & Practical",
-                        maxLines: 3,
-                      )),
+                  Center(
+                      child: BlocProvider.of<DetailsCubit>(context).description
+                          ? null
+                          : const Text(
+                              "100% cotton Treated against piling & Shrinkage for men & women Comfortable & Practical",
+                              maxLines: 3,
+                            )),
                 ],
               ),
             ),
