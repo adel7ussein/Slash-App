@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:slash_app/models/product_model.dart';
 
+import '../cubits/details_cubit/details_cubit.dart';
 import '../widgets/details_screen_body.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -31,7 +33,10 @@ class DetailsScreen extends StatelessWidget {
         ),
         elevation: 0,
       ),
-      body: DetailsBody(product: product),
+      body: BlocProvider(
+  create: (context) => DetailsCubit(),
+  child: DetailsBody(product: product),
+),
     );
   }
 }

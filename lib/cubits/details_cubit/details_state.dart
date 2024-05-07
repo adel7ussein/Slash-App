@@ -1,3 +1,5 @@
-abstract class DetailsCubitState {}
+abstract class DetailsState {}
 
-class DetailsCubitInitial extends DetailsCubitState {}
+class DetailsInitial extends DetailsState {}
+
+class DisplayDescription extends DetailsState {}
