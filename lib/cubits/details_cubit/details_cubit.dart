@@ -17,6 +17,5 @@ class DetailsCubit extends Cubit<DetailsState> {
     selectedIndex = currentIndex;
 
     emit(ChangeBorderIndex());
-    print(selectedIndex);
   }
 }

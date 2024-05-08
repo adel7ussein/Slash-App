@@ -4,6 +4,7 @@ import 'package:slash_app/cubits/details_cubit/details_state.dart';
 
 import '../cubits/details_cubit/details_cubit.dart';
 import '../models/product_model.dart';
+import 'custom_details_image.dart';
 
 class DetailsBody extends StatelessWidget {
   const DetailsBody({
@@ -16,6 +17,7 @@ class DetailsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List listOfColors = [0, 1, 2];
+    final ScrollController _controller = ScrollController();
 
     return BlocConsumer<DetailsCubit, DetailsState>(
       listener: (context, state) {
@@ -28,64 +30,54 @@ class DetailsBody extends StatelessWidget {
           ),
           scrollDirection: Axis.vertical,
           child: Column(children: [
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 50, horizontal: 50),
-              height: MediaQuery.sizeOf(context).height * .4,
-              decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: NetworkImage(
-                          product.productVariations![0].productVarientImages![0]
-                              .imagePath,
-                          scale: 10))),
-            ),
+            SizedBox(
+                width: MediaQuery.sizeOf(context).width,
+                height: MediaQuery.sizeOf(context).height * .5,
+                child: ListView.builder(
+                  controller: _controller,
+                  padding: EdgeInsets.zero,
+                  itemCount: product
+                      .productVariations![0].productVarientImages!.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, int index) {
+                    return CustomDetailsImage(
+                        imagePath: product.productVariations![0]
+                            .productVarientImages![index].imagePath);
+                  },
+                )),
+            //CustomDetailsImage(imagePath: product.productVariations![0].productVarientImages![0].imagePath
             Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(10.0),
-                    margin: const EdgeInsets.all(3.0),
-                    height: 50,
-                    width: 50, // Add padding to adjust the border distance
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors
-                              .lightGreenAccent, // Change the color of the border
-                          width: 1.5, // Change the width of the border
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                        image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: NetworkImage(
-                              product.productVariations![0]
-                                  .productVarientImages![0].imagePath,
-                            )) // Add border radius if needed
-                        ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(3.0),
-
-                    padding: const EdgeInsets.all(10.0),
-                    height: 50,
-                    width: 50, // Add padding to adjust the border distance
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors
-                              .transparent, // Change the color of the border
-                          width: 1.5, // Change the width of the border
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                        image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: NetworkImage(
-                              product.productVariations![0]
-                                  .productVarientImages![1].imagePath,
-                            )) // Add border radius if needed
-                        ),
-                  ),
-                ],
+              child: Container(
+                margin: const EdgeInsets.only(left: 122),
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * .08,
+                child: ListView.builder(
+                    controller: _controller,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: product
+                        .productVariations![0].productVarientImages!.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                          padding: const EdgeInsets.all(10.0),
+                          margin: const EdgeInsets.all(3.0),
+                          height: 50,
+                          width:
+                              52, // Add padding to adjust the border distance
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors
+                                    .lightGreenAccent, // Change the color of the border
+                                width: 1.5, // Change the width of the border
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                              image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: NetworkImage(
+                                    product.productVariations![0]
+                                        .productVarientImages![index].imagePath,
+                                  )) // Add border radius if needed
+                              ));
+                    }),
               ),
             ),
             const SizedBox(
@@ -168,16 +160,18 @@ class DetailsBody extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(horizontal: 3),
                     width: 22,
                     height: 22,
-                    decoration:  BoxDecoration(
-                        color: Colors.lightBlue, shape: BoxShape.circle,
+                    decoration: BoxDecoration(
+                      color: Colors.lightBlue,
+                      shape: BoxShape.circle,
                       border: BlocProvider.of<DetailsCubit>(context)
-                          .selectedIndex ==
-                          listOfColors[1]
+                                  .selectedIndex ==
+                              listOfColors[1]
                           ? Border.all(
-                        color: Colors.white,
-                        width: 2.5,
-                      )
-                          : null,),
+                              color: Colors.white,
+                              width: 2.5,
+                            )
+                          : null,
+                    ),
                   ),
                 ),
                 InkWell(
@@ -189,16 +183,18 @@ class DetailsBody extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(horizontal: 3),
                     width: 22,
                     height: 22,
-                    decoration:  BoxDecoration(
-                        color: Colors.lightGreenAccent, shape: BoxShape.circle,
+                    decoration: BoxDecoration(
+                      color: Colors.lightGreenAccent,
+                      shape: BoxShape.circle,
                       border: BlocProvider.of<DetailsCubit>(context)
-                          .selectedIndex ==
-                          listOfColors[2]
+                                  .selectedIndex ==
+                              listOfColors[2]
                           ? Border.all(
-                        color: Colors.white,
-                        width: 2.5,
-                      )
-                          : null,),
+                              color: Colors.white,
+                              width: 2.5,
+                            )
+                          : null,
+                    ),
                   ),
                 ),
               ],
